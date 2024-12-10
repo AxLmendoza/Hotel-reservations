@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Estilos básicos para la página */
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin: 1em 0;
+            color: #333;
+        }
+
+        .product-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1em;
+        }
+
+        .product-card {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para las secciones individuales */
+        .product-card:nth-child(1) {
+            background-color: #fff8cd;
+            /* Color amarillo suave */
+        }
+
+        .product-card:nth-child(2) {
+            background-color: #ffe5e9;
+            /* Color rosado */
+        }
+
+        .product-card:nth-child(3) {
+            background-color: #e4f1fb;
+            /* Color azul claro */
+        }
+
+        .product-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 1em;
+        }
+
+        .product-content {
+            flex: 1;
+            padding: 1em;
+        }
+
+        .product-content h2 {
+            font-size: 1.8em;
+            margin-bottom: 0.5em;
+            color: #333;
+        }
+
+        .product-content p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+
+        .nav-button {
+            background-color: #13dabf;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #13dabf;
+        }
+
+
+
+        /* Estilos generales del header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            /* Alinea título y botones en extremos opuestos */
+            align-items: center;
+            background-color: #5f8a99;
+            padding: 20px;
+            color: white;
+        }
+
+
+        /* Título del header */
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-buttons a {
+            background-color: #30a4be;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #28a745;
+            transform: translateY(-2px);
+        }
+
+
+
+        main {
+            text-align: center;
+            padding: 2em;
+        }
+
+        main h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        main p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 2em;
+        }
+
+        /* Contenedor de productos */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 columnas de igual ancho */
+            gap: 16px;
+            /* Espacio entre los productos */
+            padding: 16px;
+        }
+
+        /* Estilos individuales de cada producto */
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            max-width: 100%;
+            /* Asegúrate de que se ajusten al contenedor */
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .product h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .product p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .product span {
+            font-size: 1em;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .product form {
+            margin-top: 16px;
+        }
+
+        .product button {
+            padding: 10px 16px;
+            font-size: 0.9em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product button:hover {
+            background-color: #0056b3;
+        }
+
+
+
+        /* Contenedor general */
+        .licencia-container {
+            text-align: center;
+            background-color: #f8f8f8;
+            padding: 20px 0;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Título */
+        .licencia-container h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Contenedor de logos */
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            /* Espacio entre los logos */
+            flex-wrap: wrap;
+            /* Permite que se ajusten en pantallas más pequeñas */
+            padding: 0 20px;
+        }
+
+        /* Logos individuales */
+        .logos img {
+            max-width: 200px;
+            height: auto;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .logos img:hover {
+            transform: scale(1.1);
+            /* Aumenta el tamaño al pasar el cursor */
+            opacity: 0.8;
+        }
+
+        /* General */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5em;
+            color: #222;
+        }
+
+        /* Subtítulo */
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2em;
+        }
+
+        /* Grid de tarjetas */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Imagen de la tarjeta */
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Título de la tarjeta */
+        .card h2 {
+            font-size: 1.5rem;
+            margin: 15px;
+            color: #333;
+        }
+
+        /* Fecha */
+        .card .date {
+            font-size: 0.9rem;
+            color: #888;
+            margin: 0 15px;
+        }
+
+        /* Descripción */
+        .card .description {
+            font-size: 1rem;
+            margin: 15px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+
+
+
+        .text-section {
+            flex: 1;
+            max-width: 900px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .text-section h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .text-section h2 {
+            font-size: 1.2em;
+            font-weight: normal;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+        }
+
+        .text-section p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .image-section {
+            flex: 1;
+            max-width: 300px;
+            padding: 20px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .weather-content {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            max-width: 501px;
+            text-align: center;
+            padding: 20px 20px 50px;
+            margin: 20px auto 0;
+            background-color: #546785;
+            border-radius: 9px;
+        }
+
+        .weather-content h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+
+        .weather-content p {
+            color: #cfcfd9;
+        }
+
+        .result {
+            margin-bottom: 8%;
+        }
+
+        .result p {
+            margin: 5px 0 5px;
+        }
+
+        .result h2 {
+            font-size: 70px;
+            line-height: 70px;
+            margin: -10px 0 10px;
+            color: #fff;
+        }
+
+        .result h5 {
+            font-size: 21px;
+            margin: 2px;
+            color: #fff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input[type="text"],
+        form input[type="submit"],
+        form select {
+            width: 100%;
+            margin: 0px 0 25px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 3px #ddd;
+            border-radius: 4px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            margin: 0 auto;
+            cursor: pointer;
+            background-color: #14d4a5;
+            border: 1px solid #14d4a5;
+            color: #fff;
+            font-weight: 600;
+            transition: width 1s;
+        }
+
+        form input[type="submit"]:hover {
+            width: 50%;
+        }
+
+        .alert-message {
+            margin: 24px 0 0;
+            color: red !important;
+        }
+    </style>
+</head>
+
+
+<script src="//code.tidio.co/l75zttiyjmteqtmppow1dymasbkdfatm.js" async></script>
+<!-- Encabezado con título y botones -->
+<header class="text-center py-4 bg-light">
+    <h1 class="mb-4">Papu reservaciones</h1>
+    <div class="nav-buttons d-flex justify-content-center gap-3">
+        <a href="index.html" class="btn btn-primary">Ir a reservaciones</a>
+        <a href="prueba.html" class="btn btn-secondary">Ir a tu ubicación</a>
+        <a href="https://wa.me/522491782246?text=Hola,%20quisiera%20información%20sobre%20sus%20productos"
+            class="btn btn-success" target="_blank">
+            Contáctanos
+        </a>
+    </div>
+</header>
+
+
+
+<div class="container" data-aos="fade-up">
+    <div class="text-section">
+        <h1>Casa Antonieta</h1>
+        <h2>Visitamos en nuestra Hotel de Oaxaca: </h2>
+
+        <p>Ubicado a dos cuadras del zócalo, Casa Antonieta es un hotel nuevo lleno detalles con estilo contemporáneo,
+            fresco y ecléctico. Sus artesanías y objetos decorativos son productos locales. Este Hotel cuenta WiFi, baño
+            privado, acepta mascotas, aire acondicionado, TV por cable, caja de seguridad y ofrece el servicio de
+            traslado al aeropuerto.a</p>
+
+        📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+        <br>
+        📞 Teléfono: [01-800-123-4567]
+        <br>
+        🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+        <br>
+        </p>
+    </div>
+
+
+    <div class="image-section">
+        <img src="img/casa_antonia.jpg" alt="Real estate interior" />
+    </div>
+</div>
+
+<div class="container" data-aos="fade-up">
+    <div class="image-section">
+        <img src="img/amante.jpg" alt="Real estate interior" />
+    </div>
+    <div class="text-section">
+        <h1>Hotel Los Amantes</h1>
+        <h2>Haz tus compras de manera fácil y segura con cualquiera de estas opciones:</h2>
+        <p>
+
+            El Hotel Los Amantes se encuentra dentro de un edificio restaurado y catalogado de estilo clásico
+            contemporáneo de dos pisos y una inigualable terraza que permite tener una hermosa vista panorámica de la
+            ciudad. Cuenta con WiFi, aire acondicionado, TV por cable, estacionamiento y restaurante.
+            <br>
+            <br>
+            ¡Elige el método que más te convenga y disfruta de tu experiencia con nosotros!
+            <br>
+            <br>
+
+            💳 Tarjetas de crédito y débito: Visa, Mastercard, American Express.
+            <br>
+            📱 Pagos digitales: PayPal, Mercado Pago, transferencias bancarias.
+            <br>
+            💵 Efectivo: Disponible en nuestras sucursales físicas.
+            <br>
+            🪙 Vales y cupones: Canjeables en nuestras tiendas participantes.
+            <br>
+
+        </p>
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="text-section">
+        <h1>Pug Seal - Zapoteco</h1>
+        <div class="scrollable-content">
+            <p>
+                El Pug Seal Oaxaca está muy bien situado en la ciudad de Oaxaca y ofrece servicio de conserjería y
+                aparcamiento privado gratuito. Este hotel de 5 estrellas dispone de bicicletas de uso gratuito y
+                habitaciones con aire acondicionado, WiFi gratuita y baño privado. El establecimiento está cerca de
+                lugares de interés famosos como el mercado tianguis de la colonia Reforma, el mercado 20 de noviembre y
+                la estación central de autobuses de Antequera..
+            </p>
+
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="img/pug.jpeg" alt="Real estate interior" />
+    </div>
+</div>
+
+
+
+
+<div class="container" data-aos="fade-up">
+    <div class="image-section">
+        <img src="img/hidalgo.jpeg" alt="Real estate interior" />
+    </div>
+    <div class="text-section">
+        <h1>Casa Hidalgo Hotel Boutique</h1>
+        <p>
+            <br>
+            La Casa Hidalgo Hotel Boutique se encuentra en el centro de Oaxaca, a 300 metros del centro de Oaxaca de
+            Juárez, y ofrece centro de fitness, bar y terraza. Cuenta con restaurante, recepción 24 horas, servicio de
+            habitaciones y WiFi gratuita en todas las instalaciones. El hotel ofrece habitaciones familiares.
+            <br>
+            <br>
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </p>
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="text-section">
+        <h1>Hotel Azul</h1>
+        <div class="scrollable-content">
+            <p>
+                Cuenta con una ubicación estratégica ya que este hotel boutique con un impecable concepto contemporáneo
+                se encuentra muy cerca del zócalo y el Andador Turístico. Cuenta con WiFi, restaurante, room service y
+                ofrece traslado al aeropuerto entre otras cosas. Su diseño te va a encantar.
+            </p>
+
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="img/azul.jpg" alt="Real estate interior" />
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="image-section">
+        <img src="img/buga.jpg" alt="Real estate interior" />
+    </div>
+    <div class="text-section">
+        <h1>Casa de las Bugambilias B&B</h1>
+        <p>
+            <br>
+            Casa de las Bugambilias esta ubicado en la Calle Reforma, a una cuadra y media del Templo de Santo Domingo,
+            a una del Jardín Etnobotánico y junto al restaurante La Olla, una deliciosa opción para degustar platillos
+            tradicionales oaxaqueños y algunas otras creaciones de la reconocida Chef Pilar Cabrera. Este lugar ofrece
+            WiFi a sus huéspedes.
+            <br>
+            <br>
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </p>
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="text-section">
+        <h1>Quinta Real
+        </h1>
+        <div class="scrollable-content">
+            <p>
+                Es uno de los más céntricos hoteles en Oaxaca, además cuenta con grandes espacios verdes ya que este
+                edificio catalogado fue anteriormente un ex convento por lo cual su arquitectura es realmente
+                fascinante. Sus habitaciones de estilo colonial cuanta con todas las amenidades y servicios que
+                necesitas para tener una grata estancia en la Ciudad. No debes perder la oportunidad de nadar en su
+                amplia alberca. Las habitaciones además cuentan con aire acondicionado, baño privado y WiFi. Por la zona
+                hay muchas opciones de restaurantes, galerías y mezcalerías. </p>
+
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="img/quinta.jpg" alt="Real estate interior" />
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="image-section">
+        <img src="img/Para.jpg" alt="Real estate interior" />
+    </div>
+    <div class="text-section">
+        <h1>Parador de Alcalá </h1>
+        <p>
+            <br>
+            Quizás sea este uno de los mejores ubicados ya que se encuentra sobre el Andador Turístico así es que tanto
+            los museos, galerías y Templos como la Catedral y Santo Domingo están a unos cuantos pasos. Su alberca al
+            aire libre brinda una buena opción para relajarse. Cuenta con restaurante, traslados al aeropuerto, WiFi y
+            está acondicionado para personas con movilidad reducida
+            <br>
+            <br>
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </p>
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="text-section">
+        <h1>Hotel CasAntica</h1>
+        <div class="scrollable-content">
+            <p>
+                Es uno de los más céntricos hoteles en Oaxaca, además cuenta con grandes espacios verdes ya que este
+                edificio catalogado fue anteriormente un ex convento por lo cual su arquitectura es realmente
+                fascinante. Sus habitaciones de estilo colonial cuanta con todas las amenidades y servicios que
+                necesitas para tener una grata estancia en la Ciudad. No debes perder la oportunidad de nadar en su
+                amplia alberca. Las habitaciones además cuentan con aire acondicionado, baño privado y WiFi. Por la zona
+                hay muchas opciones de restaurantes, galerías y mezcalerías. </p>
+
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="img/casa.jpg" alt="Real estate interior" />
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="image-section">
+        <img src="img/Parador.jpg" alt="Real estate interior" />
+    </div>
+    <div class="text-section">
+        <h1>Casa de Adobe Gallery</h1>
+        <p>
+            <br>
+            Está muy bien ubicado y ofrece a sus clientes desayuno continental o a la carta, es además petfriendly, y su
+            terraza es uno de los espacios favoritos por sus vistas de la ciudad. Sus habitaciones cuentan con baño
+            privado y WiFi.
+            <br>
+            <br>
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </p>
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="text-section">
+        <h1>Casa de Sierra Azul</h1>
+        <div class="scrollable-content">
+            <p>
+                <br>
+                Esta mansión del siglo XIX se encuentra a tan sólo 2 cuadras del zócalo, cuenta al centro un patio, algo
+                muy típico de las casas coloniales. Cuenta con servicio de restaurante y sus habitaciones tienen aire
+                acondicionado y WiFi. Muy cómodo y céntrico.
+                <br>
+                <br>
+                📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+                <br>
+                📞 Teléfono: [01-800-123-4567]
+                <br>
+                🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+                <br>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="img/sierra.jpg" alt="Real estate interior" />
+    </div>
+</div>
+
+
+<div class="container" data-aos="fade-up">
+    <div class="image-section">
+        <img src="img/inn.jpg" alt="Real estate interior" />
+    </div>
+    <div class="text-section">
+        <h1>Fiesta Inn </h1>
+        <p>
+            <br>
+            Ubicado en la zona comercial de la ciudad y cerca del aeropuerto, ofrece transportación gratuito hacia y
+            desde el centro de la ciudad. El hotel cuenta con alberca al aire libre, gimnasio, estacionamiento y
+            restaurante. Las habitaciones cuentan con WiFi, aire acondicionado y baños privados.
+            <br>
+            <br>
+            📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+            <br>
+            📞 Teléfono: [01-800-123-4567]
+            <br>
+            🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+            <br>
+        </p>
+    </div>
+</div>
+
+<div class="container" data-aos="fade-up">
+    <div class="text-section">
+        <h1>Misión de Los Ángeles</h1>
+        <div class="scrollable-content">
+            <p>
+                <br>
+                Este es el sitio ideal para los que necesitan un lugar espacioso, cuenta además de una alberca y bar a
+                un costado, con gimnasio, canchas de tenis y grandes áreas verdes. Cuenta con dos restaurantes donde se
+                ofrece comida internacional y comida oaxaqueña. Sus habitaciones tiene vista al jardín y cuentan con
+                baño privado, TV por cable y WiFi.
+                <br>
+                <br>
+                📍 Dirección: [Calle Ejemplo #123, Colonia Centro, Oaxaca, Oaxaca.]
+                <br>
+                📞 Teléfono: [01-800-123-4567]
+                <br>
+                🕒 Horarios de atención: Lunes a viernes de 9:00 AM a 6:00 PM, sábados de 10:00 AM a 2:00 PM.
+                <br>
+        </div>
+    </div>
+    <div class="image-section">
+        <img src="img/angeles.jpg" alt="Real estate interior" />
+    </div>
+</div>
+
+
+
+
+<!-- Ininicia la copra de productos-->
+<h1>Reserva con Papu servis </h1>
+
+<!--Compra de productos -->
+<div class="product-container" data-aos="fade-up">
+    <!-- Producto 1 -->
+    <div class="product">
+        <img src="img/casa_antonia.jpg" alt="Producto 1">
+        <h3>Casa Antonieta</h3>
+        <p>Hotel</p>
+        <span>Precio: $200.00</span>
+        <br>
+        <br>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Casa Antonieta">
+            <input type="hidden" name="product_price" value="200.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="product" data-aos="fade-up">
+        <img src="img/amante.jpg" alt="Producto 2">
+        <br>
+        <h3>Hotel Los Amantes</h3>
+        <p>Hotel </p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Hotel los Amantes">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+
+    <!-- Producto 2 -->
+    <div class="product" data-aos="fade-up">
+        <img src="img/pug.jpeg" alt="Producto 2">
+        <h3>Pug Seal - Zapoteco</h3>
+        <p>Casa de hospedaje</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Pug Seal - Zapoteco">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Casa de hospedaje">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <!-- Repite los demas productos... -->
+
+    <div class="product" data-aos="fade-up">
+        <div data-aos="fade-up"></div>
+        <img src="img/papu.jpg" alt="Producto 2">
+        <br>
+        <h3>Casa Hidalgo Hotel Boutique</h3>
+        <p>Hotel</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Casa Hidalgo Hotel Boutique">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/azul.jpg" alt="Producto 2">
+        <h3>Hotel Azul</h3>
+        <p>Hotel </p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Hotel Azul">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/buga.jpg" alt="Producto 2">
+        <br>
+        <br>
+        <h3>Casa de las Bugambilias B&B</h3>
+        <p>Casa de hospedaje</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Casa de las Bugambilias B&B">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Casa de hospedaje">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/quinta.jpg" alt="Producto 2">
+        <br>
+        <br>
+        <h3>Quinta Real</h3>
+        <p>Hotel</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Quinta Real">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/Para.jpg" alt="Producto 2">
+        <h3>Parador de Alcalá</h3>
+        <p>Descripción del producto 2</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Producto 2">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/casa.jpg" alt="Producto 2">
+        <h3>Hotel CasAntica</h3>
+        <p>Hotel</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Producto 2">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/Para.jpg" alt="Producto 2">
+        <h3>Casa de Adobe Gallery</h3>
+        <p>Casa de hospedaje</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Casa de Adobe Gallery">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Casa de hospedaje">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/inn.jpg"
+            alt="Producto 2">
+        <h3>Fiesta Inn</h3>
+        <p>Hotel</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Fiesta Inn">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+
+
+    <div class="product" data-aos="fade-up">
+        <img src="img/angeles.jpg" alt="Producto 2">
+        <h3>Misión de Los Ángeles</h3>
+        <p>Hotel</p>
+        <span>Precio: $250.00</span>
+        <form action="mandaralcarrito.php" method="POST">
+            <input type="hidden" name="product_name" value="Producto 2">
+            <input type="hidden" name="product_price" value="250.00">
+            <input type="hidden" name="product_description" value="Hotel">
+            <button type="submit">Reservar</button>
+        </form>
+    </div>
+</div>
+
+
+
+<h1 data-aos="fade-up">!Consulta el clima en donde te hospedes¡</h1>
+<p id="weather"></p>
+
+<section class="weather-content" data-aos="fade-up">
+    <h1>Buscador del Clima</h1>
+    <div class="result">
+        <p>Agrega ciudad y país</p>
+    </div>
+    <form action="" method="POST" class="get-weather">
+        <input type="text" name="city" id="city" placeholder="Escribe tu ciudad...">
+        <select name="country" id="country">
+            <option disabled selected value="">Selecciona el país</option>
+            <option value="AR">Argentina</option>
+            <option value="CO">Colombia</option>
+            <option value="CR">Costa Rica</option>
+            <option value="ES">España</option>
+            <option value="US">Estados Unidos</option>
+            <option value="MX">México</option>
+            <option value="PE">Perú</option>
+        </select>
+        <input type="submit" value="Consultar Clima">
+    </form>
+</section>
+
+<script>
+    const result = document.querySelector('.result');
+    const form = document.querySelector('.get-weather');
+    const nameCity = document.querySelector('#city');
+    const nameCountry = document.querySelector('#country');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (nameCity.value.trim() === '' || nameCountry.value === '') {
+            showError('Ambos campos son obligatorios...');
+            return;
+        }
+
+        callAPI(nameCity.value.trim(), nameCountry.value);
+    });
+
+    function callAPI(city, country) {
+        const apiId = '41d1d7f5c2475b3a16167b30bc4f265c';
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiId}&lang=es`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(dataJSON => {
+                if (dataJSON.cod === '404') {
+                    showError('Ciudad no encontrada...');
+                } else {
+                    clearHTML();
+                    showWeather(dataJSON);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                showError('Error al conectar con la API. Inténtalo más tarde.');
+            });
+    }
+
+    function showWeather(data) {
+        const { name, main: { temp, temp_min, temp_max }, weather: [details] } = data;
+
+        const degrees = kelvinToCentigrade(temp);
+        const min = kelvinToCentigrade(temp_min);
+        const max = kelvinToCentigrade(temp_max);
+
+        const content = document.createElement('div');
+        content.innerHTML = `
+            <h5>Clima en ${name}</h5>
+            <img src="https://openweathermap.org/img/wn/${details.icon}@2x.png" alt="Icono clima">
+            <h2>${degrees}°C</h2>
+            <p>Máx: ${max}°C</p>
+            <p>Mín: ${min}°C</p>
+        `;
+
+        result.appendChild(content);
+    }
+
+    function showError(message) {
+        const alert = document.createElement('p');
+        alert.classList.add('alert-message');
+        alert.innerHTML = message;
+
+        form.appendChild(alert);
+        setTimeout(() => {
+            alert.remove();
+        }, 3000);
+    }
+
+    function kelvinToCentigrade(temp) {
+        return Math.round(temp - 273.15);
+    }
+
+    function clearHTML() {
+        result.innerHTML = '';
+    }
+</script>
+
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+</script>
+
+
+<h1>Actividades que debes hacer en Oaxaca</h1>
+    <div style="text-align: center;">
+       <h3> Descubre sobre las diferentes actividades que puedes hacer </h3>
+    </div>
+    <div class="container" data-aos="fade-up">
+        <div class="card-grid">
+            <div class="card">
+                <img src="img/primera.jpeg" alt="Manualidades de Halloween">
+                <h2>Excursión a Monte Albán, Arrazola y San Bartolo Coyotepec</h2>
+                <p class="date">Duracion de 7 horas octubre de 2024</p>
+                <p class="description">En esta excursión a Monte Albán nos sumergiremos en la historia zapoteca. Además, visitaremos los pueblos de Arrazola y San Bartolo Coyotepec para descubrir su artesanía.</p>
+            </div>
+            <div class="card">
+                <img src="img/segunda.jpeg" alt="Manualidades Mes Patrio">
+                <h2>Excursión a Hierve el Agua y Teotitlán del Valle</h2>
+                <p class="date">Duracion de 8 horas</p>
+                <p class="description">Adéntrate en la cultura zapoteca visitando las cascadas petrificadas de Hierve el Agua, una maravilla de la naturaleza única en el mundo.</p>
+            </div>
+            <div class="card">
+                <img src="img/tercera.png" alt="Regreso a Clases">
+                <h2>Excursión a Monte Albán</h2>
+                <p class="date">Duracion de 3 horas </p>
+                <p class="description">Las ruinas arqueológicas de Monte Albán son uno de los lugares que no puedes perderte si visitas Oaxaca. En este tour conoceremos uno de los recintos arqueológicos más importantes de la cultura zapoteca.</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="notification" style="display: none; position: fixed; top: 20px; right: 20px; background-color: #4caf50; color: white; padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; font-size: 16px;">
+        Mensaje de notificación
+    </div>
+    
+
+
+<script>
+   // Función para mostrar el mensaje flotante decorado
+function showNotification(message, type) {
+    const notification = document.getElementById('notification');
+
+    // Configurar el texto y color del mensaje
+    notification.textContent = message;
+    notification.style.backgroundColor = type === 'success' ? '#4caf50' : '#f44336'; // Verde para éxito, rojo para error
+    notification.style.display = 'block';
+
+    // Ocultar el mensaje después de 3 segundos
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+// Escuchar el evento de envío del formulario
+const formElement = document.querySelector('#miFormulario'); // Cambia #miFormulario por el ID de tu formulario
+
+formElement.addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar que se recargue la página al enviar el formulario
+
+    // Enviar datos al servidor con Fetch
+    fetch('ruta_a_tu_php.php', {
+        method: 'POST',
+        body: new FormData(formElement)
+    })
+    .then(response => response.json()) // Convertir la respuesta a JSON
+    .then(data => {
+        if (data.success) {
+            showNotification('Producto guardado exitosamente.', 'success');
+        } else {
+            showNotification('Error al guardar el producto.', 'error');
+        }
+    })
+    .catch(error => {
+        showNotification('Ocurrió un error inesperado.', 'error');
+        console.error('Error:', error);
+    });
+});
+
+
+</script>
+
+
+<!--Pie de pagina  -->
+</body>
+
+</html>

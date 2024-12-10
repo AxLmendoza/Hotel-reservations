@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Papelería</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+
+/* Estilos globales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #f0f4f8, #d9e2ec);
+    color: #333;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    color: #3a86ff;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+form input, form button {
+    flex: 1 1 calc(50% - 10px);
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form input:focus {
+    border-color: #3a86ff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(58, 134, 255, 0.4);
+}
+
+form button {
+    flex: 1 1 100%;
+    background: #3a86ff;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+form button:hover {
+    background: #2a6dcd;
+    box-shadow: 0 4px 8px rgba(58, 134, 255, 0.3);
+}
+
+/* Contenedor de confirmación */
+.confirm-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.confirm-container button {
+    background: #8338ec;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.confirm-container button:hover {
+    background: #6a2dbc;
+    box-shadow: 0 4px 8px rgba(131, 56, 236, 0.4);
+}
+
+/* Botón MercadoPago */
+.btnContainer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.btnContainer button {
+    background: #ff595e;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btnContainer button:hover {
+    background: #d44648;
+    box-shadow: 0 4px 8px rgba(255, 89, 94, 0.4);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    font-size: 1rem;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table thead {
+    background: #3a86ff;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+table tr:hover {
+    background: #eaf2ff;
+}
+
+/* Mensaje de compra */
+#purchaseMessage {
+    margin-top: 20px;
+    padding: 20px;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>reservaciones de compras</h1>
+        <form id="productForm">
+            <input type="hidden" id="productId">
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <input type="text" id="descripcion" placeholder="Descripción" required>
+            <input type="number" id="precio" placeholder="Precio" required>
+            <input type="number" id="stock" placeholder="Numero de personas" required>
+            <button type="submit">Guardar</button>
+            <div class="confirm-container">
+                <button id="confirmPurchaseButton">Confirmar compra</button>
+            </div>
+            <div id="purchaseMessage"></div> <!-- Contenedor para mostrar mensajes -->
+        </form>
+    
+    
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>N. Personas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="productList">
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+
+    <script src="//code.tidio.co/l75zttiyjmteqtmppow1dymasbkdfatm.js" async></script>
+
+
+    <script>
+        document.getElementById("confirmPurchaseButton").addEventListener("click", function () {
+    // Guardar datos de la compra
+    fetch("guardar_compra.php", { method: "POST" })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Limpiar datos del carrito
+                fetch("limpiar_carrito.php", { method: "POST" })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Obtener ubicación del usuario
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(
+                                    function (position) {
+                                        const lat = position.coords.latitude;
+                                        const lon = position.coords.longitude;
+
+                                        // Mostrar mensaje con las coordenadas
+                                        const messageContainer = document.getElementById("purchaseMessage");
+                                        messageContainer.innerHTML = `
+                                            <p>El pedido sera mando a: Latitud ${lat}, Longitud ${lon}</p>
+                                            <p>Puedes revisar tu ubicacion en el partado de (Tu ubicacion) </p>
+                                            <p>Gracias por tu compra.</p>
+                                        `;
+                                    },
+                                    function (error) {
+                                        alert("No se pudo obtener la ubicación: " + error.message);
+                                    }
+                                );
+                            } else {
+                                alert("La geolocalización no está soportada en este navegador.");
+                            }
+                        } else {
+                            alert("Hubo un problema al limpiar el carrito.");
+                        }
+                    });
+            } else {
+                alert("Hubo un problema al guardar la compra.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});
+
+    </script>
+    
+
+</body>
+</html>

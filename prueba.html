@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocalización y Mapa</title>
+
+    <style>
+        /* General */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+    
+        /* Contenedor principal */
+        div {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+    
+        /* Títulos */
+        h1 {
+            font-size: 1.8em;
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 1em;
+        }
+    
+        /* Párrafos */
+        p {
+            font-size: 1em;
+            text-align: center;
+        }
+    
+        /* Elemento span */
+        #Pos {
+            font-weight: bold;
+            color: #007BFF;
+        }
+    
+        /* Contenedor del mapa */
+        #map {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Responsivo */
+        @media (max-width: 768px) {
+            div {
+                width: 90%;
+            }
+    
+            h1 {
+                font-size: 1.5em;
+            }
+    
+            p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+    
+
+    <!-- Estilo de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Script de Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div style="width: 750px; margin: 2em auto;">
+        <h1>Tu hubicacion</h1>
+        <p>Tu posición es: <span id="Pos">Desconocida</span></p>
+    </div>
+    <!-- Contenedor del mapa -->
+    <div id="map" style="height: 400px; width: 100%; margin: 2em auto;"></div>
+
+    <script>
+        var posElt;
+        var map;
+
+        window.addEventListener('load', function() {
+            posElt = document.getElementById('Pos');
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(geoposOK, geoposError);
+            } else {
+                posElt.textContent = "Geolocalización no es soportada por este navegador.";
+            }
+        });
+
+        function geoposOK(pos) {
+            // Obtener coordenadas
+            var lat = pos.coords.latitude;
+            var lon = pos.coords.longitude;
+
+            // Mostrar coordenadas
+            posElt.textContent = `Estás en la posición ${lat}, ${lon}`;
+
+            // Inicializar mapa
+            map = L.map('map').setView([lat, lon], 13); // Coordenadas y zoom inicial
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Añadir marcador
+            L.marker([lat, lon]).addTo(map).bindPopup('Estás aquí').openPopup();
+        }
+
+        function geoposError(err) {
+            console.warn(err.message);
+            let msg;
+            switch (err.code) {
+                case err.PERMISSION_DENIED:
+                    msg = "No nos has dado permiso para obtener tu posición";
+                    break;
+                case err.POSITION_UNAVAILABLE:
+                    msg = "Tu posición actual no está disponible";
+                    break;
+                case err.TIMEOUT:
+                    msg = "No se ha podido obtener tu posición en un tiempo prudencial";
+                    break;
+                default:
+                    msg = "Error desconocido";
+                    break;
+            }
+            posElt.textContent = msg;
+        }
+    </script>
+</body>
+</html>
