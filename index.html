@@ -185,7 +185,7 @@ table tr:hover {
             <input type="number" id="stock" placeholder="Numero de personas" required>
             <button type="submit">Guardar</button>
             <div class="confirm-container">
-                <button id="confirmPurchaseButton">Confirmar compra</button>
+                <button id="confirmPurchaseButton">Confirmar reservacion</button>
             </div>
             <div id="purchaseMessage"></div> <!-- Contenedor para mostrar mensajes -->
         </form>
@@ -233,9 +233,9 @@ table tr:hover {
                                         // Mostrar mensaje con las coordenadas
                                         const messageContainer = document.getElementById("purchaseMessage");
                                         messageContainer.innerHTML = `
-                                            <p>El pedido sera mando a: Latitud ${lat}, Longitud ${lon}</p>
+                                            <p>Tu equipaje se recojera en (Tu casa): ${lat}, Longitud ${lon}</p>
                                             <p>Puedes revisar tu ubicacion en el partado de (Tu ubicacion) </p>
-                                            <p>Gracias por tu compra.</p>
+                                            <p>Gracias por tu reservacion.</p>
                                         `;
                                     },
                                     function (error) {
