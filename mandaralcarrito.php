@@ -44,4 +44,9 @@ if (isset($_POST['product_name']) && isset($_POST['product_price']) && isset($_P
     // Datos no enviados correctamente
     echo "<script>alert('Error: Datos no enviados correctamente.'); window.history.back();</script>";
 }
+
+//class is not indix
+
+
 ?>
+
