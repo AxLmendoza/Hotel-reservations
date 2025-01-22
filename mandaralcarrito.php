@@ -45,8 +45,7 @@ if (isset($_POST['product_name']) && isset($_POST['product_price']) && isset($_P
     echo "<script>alert('Error: Datos no enviados correctamente.'); window.history.back();</script>";
 }
 
-//class is not indix
-
-
+//aakajskajskjakj sa
+//los cambios van al final del archivo  mandaralcarrito.php                         
 ?>
 
